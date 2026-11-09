@@ -1,0 +1,802 @@
+{
+  "version": 1,
+  "author": "Project 2",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-breadboard",
+      "id": "bb1",
+      "top": 140,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 140,
+      "left": 740,
+      "attrs": {
+        "env": "micropython-20260406-v1.28.0"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "window",
+      "top": -160,
+      "left": 620,
+      "attrs": {
+        "horn": "single"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "alarm",
+      "top": -155,
+      "left": 850,
+      "attrs": {
+        "volume": "0.1"
+      }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -120,
+      "left": -2.37,
+      "attrs": {
+        "size": "17",
+        "display": "angle",
+        "arrow": "green"
+      }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper2",
+      "top": -120,
+      "left": 266.43,
+      "attrs": {
+        "size": "17",
+        "display": "angle",
+        "arrow": "blue"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relayFan",
+      "top": 65,
+      "left": 170,
+      "attrs": {
+        "transistor": "npn"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relayPump",
+      "top": 65,
+      "left": 438.8,
+      "attrs": {
+        "transistor": "npn"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "fan",
+      "top": 65,
+      "left": 380,
+      "attrs": {
+        "color": "green",
+        "label": "FAN"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "pump",
+      "top": 65,
+      "left": 610,
+      "attrs": {
+        "color": "blue",
+        "label": "PUMP"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rFan",
+      "top": 204.55,
+      "left": 246.8,
+      "attrs": {
+        "value": "330"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rFanPullDown",
+      "top": 204.55,
+      "left": 179.6,
+      "attrs": {
+        "value": "10000"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rPump",
+      "top": 204.55,
+      "left": 515.6,
+      "attrs": {
+        "value": "330"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "rPumpPullDown",
+      "top": 204.55,
+      "left": 448.4,
+      "attrs": {
+        "value": "10000"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "title",
+      "top": -250,
+      "left": 0,
+      "attrs": {
+        "text": "DoAn_Nhom_PJ2 | TRAM CHUA CHAY & THONG GIO\nESP32 - MicroPython - Adafruit IO MQTT"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tFan",
+      "top": -165,
+      "left": 0,
+      "attrs": {
+        "text": "QUAT HUT / FAN"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tPump",
+      "top": -165,
+      "left": 268.8,
+      "attrs": {
+        "text": "BOM NUOC / PUMP"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tWindow",
+      "top": -205,
+      "left": 620,
+      "attrs": {
+        "text": "CUA SO: 0=DONG / 90=MO"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tAlarm",
+      "top": -205,
+      "left": 850,
+      "attrs": {
+        "text": "COI BAO DONG"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tFanRelay",
+      "top": 20,
+      "left": 170,
+      "attrs": {
+        "text": "RELAY QUAT"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tPumpRelay",
+      "top": 20,
+      "left": 438.8,
+      "attrs": {
+        "text": "RELAY BOM"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tBoard",
+      "top": 480,
+      "left": 0,
+      "attrs": {
+        "text": "BREADBOARD: CHI CAM 4 DIEN TRO"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tFooter",
+      "top": 515,
+      "left": 0,
+      "attrs": {
+        "text": "XANH LA = QUAT | XANH DUONG = BOM\nMotor dau GPIO truc tiep chi dung trong mo phong Wokwi."
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:5V",
+      "bb1:tp.50",
+      "red",
+      [
+        "v104.8",
+        "h-94.61",
+        "v-294.1"
+      ]
+    ],
+    [
+      "esp:3V3",
+      "bb1:bp.50",
+      "red",
+      [
+        "h-10",
+        "v-48.8",
+        "h-74.61",
+        "v206.3"
+      ]
+    ],
+    [
+      "esp:GND.1",
+      "bb1:bn.50",
+      "black",
+      [
+        "h-10",
+        "v162.4",
+        "h-131.81"
+      ]
+    ],
+    [
+      "bb1:tn.50",
+      "bb1:bn.48",
+      "black",
+      [
+        "h37.2",
+        "v174"
+      ]
+    ],
+    [
+      "bb1:tp.25",
+      "bb1:tp.26",
+      "red",
+      []
+    ],
+    [
+      "bb1:tn.25",
+      "bb1:tn.26",
+      "black",
+      []
+    ],
+    [
+      "bb1:bp.25",
+      "bb1:bp.26",
+      "red",
+      []
+    ],
+    [
+      "bb1:bn.25",
+      "bb1:bn.26",
+      "black",
+      []
+    ],
+    [
+      "rFan:1",
+      "bb1:24t.c",
+      "green",
+      []
+    ],
+    [
+      "rFan:2",
+      "bb1:30t.c",
+      "green",
+      []
+    ],
+    [
+      "rFanPullDown:1",
+      "bb1:17t.c",
+      "gray",
+      []
+    ],
+    [
+      "rFanPullDown:2",
+      "bb1:23t.c",
+      "gray",
+      []
+    ],
+    [
+      "rPump:1",
+      "bb1:52t.c",
+      "blue",
+      []
+    ],
+    [
+      "rPump:2",
+      "bb1:58t.c",
+      "blue",
+      []
+    ],
+    [
+      "rPumpPullDown:1",
+      "bb1:45t.c",
+      "gray",
+      []
+    ],
+    [
+      "rPumpPullDown:2",
+      "bb1:51t.c",
+      "gray",
+      []
+    ],
+    [
+      "stepper1:A+",
+      "bb1:6t.a",
+      "orange",
+      []
+    ],
+    [
+      "bb1:6t.e",
+      "bb1:6b.f",
+      "orange",
+      []
+    ],
+    [
+      "bb1:6b.j",
+      "esp:19",
+      "orange",
+      [
+        "v73",
+        "h825.2",
+        "v-133.6"
+      ]
+    ],
+    [
+      "stepper1:A-",
+      "bb1:5t.a",
+      "green",
+      []
+    ],
+    [
+      "bb1:5t.e",
+      "bb1:5b.f",
+      "green",
+      []
+    ],
+    [
+      "bb1:5b.j",
+      "esp:21",
+      "green",
+      [
+        "v82.6",
+        "h844.4",
+        "v-162.4"
+      ]
+    ],
+    [
+      "stepper1:B+",
+      "bb1:7t.a",
+      "purple",
+      []
+    ],
+    [
+      "bb1:7t.e",
+      "bb1:7b.f",
+      "purple",
+      []
+    ],
+    [
+      "bb1:7b.j",
+      "esp:22",
+      "purple",
+      [
+        "v92.2",
+        "h834.8",
+        "v-200.8"
+      ]
+    ],
+    [
+      "stepper1:B-",
+      "bb1:8t.a",
+      "blue",
+      []
+    ],
+    [
+      "bb1:8t.e",
+      "bb1:8b.f",
+      "blue",
+      []
+    ],
+    [
+      "bb1:8b.j",
+      "esp:23",
+      "blue",
+      [
+        "v101.8",
+        "h834.8",
+        "v-220"
+      ]
+    ],
+    [
+      "stepper2:A+",
+      "bb1:34t.a",
+      "orange",
+      []
+    ],
+    [
+      "bb1:34t.e",
+      "bb1:34b.f",
+      "orange",
+      []
+    ],
+    [
+      "bb1:34b.j",
+      "esp:13",
+      "orange",
+      [
+        "v28.8",
+        "h385.2",
+        "v-22.2"
+      ]
+    ],
+    [
+      "stepper2:A-",
+      "bb1:33t.a",
+      "green",
+      []
+    ],
+    [
+      "bb1:33t.e",
+      "bb1:33b.f",
+      "green",
+      []
+    ],
+    [
+      "bb1:33b.j",
+      "esp:14",
+      "green",
+      [
+        "v19.2",
+        "h385.2",
+        "v-41.4"
+      ]
+    ],
+    [
+      "stepper2:B+",
+      "bb1:35t.a",
+      "purple",
+      []
+    ],
+    [
+      "bb1:35t.e",
+      "bb1:35b.f",
+      "purple",
+      []
+    ],
+    [
+      "bb1:35b.j",
+      "esp:16",
+      "purple",
+      [
+        "v111.4",
+        "h518",
+        "v-133.6"
+      ]
+    ],
+    [
+      "stepper2:B-",
+      "bb1:36t.a",
+      "blue",
+      []
+    ],
+    [
+      "bb1:36t.e",
+      "bb1:36b.f",
+      "blue",
+      []
+    ],
+    [
+      "bb1:36b.j",
+      "esp:17",
+      "blue",
+      [
+        "v121",
+        "h518",
+        "v-152.8"
+      ]
+    ],
+    [
+      "relayFan:VCC",
+      "bb1:tp.15",
+      "red",
+      [
+        "h-30",
+        "v46",
+        "h59.6"
+      ]
+    ],
+    [
+      "relayFan:GND",
+      "bb1:tn.16",
+      "black",
+      [
+        "h-20",
+        "v46",
+        "h68.8"
+      ]
+    ],
+    [
+      "relayFan:COM",
+      "bb1:bp.15",
+      "red",
+      [
+        "h36",
+        "v231.3"
+      ]
+    ],
+    [
+      "relayFan:IN",
+      "bb1:17t.a",
+      "green",
+      [
+        "h-10",
+        "v46.6",
+        "h19.6"
+      ]
+    ],
+    [
+      "bb1:17t.e",
+      "bb1:17b.f",
+      "green",
+      []
+    ],
+    [
+      "bb1:17b.j",
+      "esp:26",
+      "green",
+      [
+        "v-9.6",
+        "h519.6",
+        "v-31.8"
+      ]
+    ],
+    [
+      "bb1:23t.a",
+      "bb1:tn.17",
+      "black",
+      [
+        "h-8.8"
+      ]
+    ],
+    [
+      "relayFan:NO",
+      "bb1:24t.a",
+      "green",
+      [
+        "h26",
+        "v35",
+        "h-63.2"
+      ]
+    ],
+    [
+      "bb1:24t.e",
+      "bb1:24b.f",
+      "green",
+      []
+    ],
+    [
+      "bb1:24b.j",
+      "esp:32",
+      "green",
+      [
+        "v-38.4",
+        "h423.6",
+        "v-31.8"
+      ]
+    ],
+    [
+      "fan:A",
+      "bb1:30t.a",
+      "green",
+      [
+        "v20",
+        "h-100.6"
+      ]
+    ],
+    [
+      "fan:C",
+      "bb1:tn.18",
+      "black",
+      [
+        "v30",
+        "h-157"
+      ]
+    ],
+    [
+      "relayPump:VCC",
+      "bb1:tp.40",
+      "red",
+      [
+        "h-30",
+        "v46",
+        "h78.8"
+      ]
+    ],
+    [
+      "relayPump:GND",
+      "bb1:tn.41",
+      "black",
+      [
+        "h-20",
+        "v46",
+        "h88"
+      ]
+    ],
+    [
+      "relayPump:COM",
+      "bb1:bp.40",
+      "red",
+      [
+        "h41.2",
+        "v231.3"
+      ]
+    ],
+    [
+      "relayPump:IN",
+      "bb1:45t.a",
+      "blue",
+      [
+        "h-10",
+        "v46.6",
+        "h19.6"
+      ]
+    ],
+    [
+      "bb1:45t.e",
+      "bb1:45b.f",
+      "blue",
+      []
+    ],
+    [
+      "bb1:45b.j",
+      "esp:27",
+      "blue",
+      [
+        "v9.6",
+        "h260.4",
+        "v-41.4"
+      ]
+    ],
+    [
+      "bb1:51t.a",
+      "bb1:tn.42",
+      "black",
+      [
+        "h10.4"
+      ]
+    ],
+    [
+      "relayPump:NO",
+      "bb1:52t.a",
+      "blue",
+      [
+        "h27.2",
+        "v35",
+        "h-64.4"
+      ]
+    ],
+    [
+      "bb1:52t.e",
+      "bb1:52b.f",
+      "blue",
+      []
+    ],
+    [
+      "bb1:52b.j",
+      "esp:33",
+      "blue",
+      [
+        "v-28.8",
+        "h164.4",
+        "v-31.8"
+      ]
+    ],
+    [
+      "pump:A",
+      "bb1:58t.a",
+      "blue",
+      [
+        "v20",
+        "h-61.8"
+      ]
+    ],
+    [
+      "pump:C",
+      "bb1:tn.43",
+      "black",
+      [
+        "v30",
+        "h-99"
+      ]
+    ],
+    [
+      "window:V+",
+      "bb1:tp.48",
+      "red",
+      [
+        "h-36.4"
+      ]
+    ],
+    [
+      "window:GND",
+      "bb1:tn.47",
+      "black",
+      [
+        "h-46"
+      ]
+    ],
+    [
+      "window:PWM",
+      "bb1:61t.a",
+      "orange",
+      [
+        "h-18"
+      ]
+    ],
+    [
+      "bb1:61t.e",
+      "bb1:61b.f",
+      "orange",
+      []
+    ],
+    [
+      "bb1:61b.j",
+      "esp:18",
+      "orange",
+      [
+        "v130.6",
+        "h287.6",
+        "v-181.6"
+      ]
+    ],
+    [
+      "alarm:1",
+      "bb1:tn.49",
+      "black",
+      [
+        "v111",
+        "h-283.8"
+      ]
+    ],
+    [
+      "alarm:2",
+      "bb1:63t.a",
+      "purple",
+      [
+        "v121",
+        "h-265.8"
+      ]
+    ],
+    [
+      "bb1:63t.e",
+      "bb1:63b.f",
+      "purple",
+      []
+    ],
+    [
+      "bb1:63b.j",
+      "esp:25",
+      "purple",
+      [
+        "v-19.2",
+        "h68.4",
+        "v-31.8"
+      ]
+    ]
+  ],
+  "serialMonitor": {
+    "convertEol": true,
+    "display": "always",
+    "newline": "lf"
+  },
+  "dependencies": {}
+}
